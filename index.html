@@ -277,7 +277,7 @@
          artist.textContent = songs.artist
          music.src = `source/${songs.name}.mp3`;
          img.src = `thumbnail/${songs.name}.jpg`;
-         document.getElementById('current-song').textContent = `Song ${songIndex+1} of ${songs.length}`;
+         document.getElementById('current-song').textContent = `Song ${songIndex+1} of ${song.length}`;
          }
          let songIndex = 0;
          loadSong(songs[songIndex]);
