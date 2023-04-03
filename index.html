@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Gana.com</title>
+      <link rel="icon" type="image/x-icon" href="/images/song-1.jpg">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+      <style>
+         *{
+         padding: 0;
+         margin: 0;
+         box-sizing: border-box;
+         }
+         html { font-size: 62.5%; }
+         body {
+          width:100%;
+            aspect-ratio:9 / 16;
+         margin: auto;
+         display: grid;
+         max-height: 100vh;
+         background: antiquewhite;
+         }
+         .controls-row{
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         padding: 2rem;
+         }
+         .container {
+    width: 90%;
+    margin: auto;
+    height: 80vh;
+    display: grid;
+    padding-block: 2rem;
+    border-radius: 2rem;
+    max-width: 360px;
+}
+         .thumbnail img {
+         border-radius: 100%;
+         width: 15rem;
+         height: 15rem;
+         margin: auto;
+         display: block;
+         box-shadow: 0 1.2rem 3rem 0.5rem rgb(0,0,0,.2);
+         object-fit: cover;
+         }
+         .controls-row i {
+         font-size: 3rem;
+         }
+         .details{
+         text-align: center;
+         font-size: 2rem;
+         }
+         h6#artist {
+         margin-top: 1rem;
+         color: grey;
+         font-size: 1.5rem;
+         }
+         .details h5{
+         font-size: 2.5rem;
+         }
+         .animation{
+         animation: rotatePlayer 3s linear infinite;
+         }
+         #progress{
+         -webkit-appearance: none;
+         width: 100%;
+         height: 7px;
+         border-radius: 4px;
+         background: coral;
+         }
+         #progress::-webkit-slider-thumb{
+         -webkit-appearance: none;
+         height: 2rem;
+         width: 2rem;
+         background-color: rgb(255, 68, 0);
+         border-radius: 100%;
+         border: 5px solid #fff;
+         box-shadow: 0 5px 5px rgba(255,26,26, 0.22) ;
+         }
+         .progress-container{
+         padding: 2rem;
+         }
+         @keyframes rotatePlayer {
+         from{
+         transform: rotate(0deg);
+         }
+         to{
+         transform: rotate(360deg);
+         }
+         }
+         @media(min-width:767px){
+            body {
+         aspect-ratio:16 / 9;
+         }
+         }
+      </style>
+   </head>
+   <body>
+      <div class="container">
+         <div class="details">
+            <h5 class="title" id="title"></h5>
+            <h6 class="artist" id="artist"></h6>
+         </div>
+         <div class="thumbnail">
+            <img src="/images/song-1.jpg">
+         </div>
+         <audio id="music" src="/files/song-1.mp3"></audio>
+         <div>
+          <div><span id="current-song"></span></div>
+         <div class="progress-container">
+            <input type="range" name="progress" id="progress" value="0" min="0" max="100">
+         </div>
+         <div class="controls-row">
+            <i class="fa-solid fa-backward-step" id="prev"></i>
+            <i class="fa-regular fa-circle-play" id="play"></i>
+            <i class="fa-solid fa-forward-step" id="next"></i>
+         </div>
+      </div>
+      </div>
+      <script>
+         const music = document.querySelector("#music"); 
+         const play = document.querySelector("#play");
+         const img = document.querySelector("img");
+         const prev = document.querySelector("#prev");
+         const next = document.querySelector("#next");
+         const title = document.querySelector("#title");
+         const artist = document.querySelector("#artist");
+         const progress = document.querySelector("#progress");
+         const currentSong = document.querySelector("#currentSong");
+         const totalSong = document.querySelector("#totalSong");
+         const songs=[
+         {
+             name:"song-1",
+             title:"Ye Raate Ye Mosam",
+             artist:"Artist"
+           },
+           {
+             name:"song-2",
+             title:"Lag ja gale",
+             artist:"Artist"
+           },
+           {
+             name:"song-3",
+             title:"Chandan Sa Badan",
+             artist:"Artist"
+           },
+           {
+             name:"song-4",
+             title:"Unknown",
+             artist:"Artist"
+           },
+           {
+             name:"song-5",
+             title:"Unknown",
+             artist:"Artist"
+           },
+           {
+             name:"song-6",
+             title:"Unknown",
+             artist:"Artist"
+           },
+           {
+             name:"song-7",
+             title:"Unknown",
+             artist:"Artist"
+           },
+           {
+             name:"song-8",
+             title:"Unknown",
+             artist:"Artist"
+           },
+           {
+             name:"song-9",
+             title:"Unknown",
+             artist:"Artist"
+           },
+           {
+             name:"song-10",
+             title:"Unknown",
+             artist:"Artist"
+           },
+           {
+             name:"song-11",
+             title:"Unknown",
+             artist:"Artist"
+           },
+           {
+             name:"song-12",
+             title:"Unknown",
+             artist:"Artist"
+           },
+           {
+             name:"song-13",
+             title:"Unknown",
+             artist:"Artist"
+           },
+           {
+             name:"song-14",
+             title:"Unknown",
+             artist:"Artist"
+           },
+           {
+             name:"song-15",
+             title:"Unknown",
+             artist:"Artist"
+           },
+           {
+             name:"song-16",
+             title:"Unknown",
+             artist:"Artist"
+           },
+           {
+             name:"song-17",
+             title:"Unknown",
+             artist:"Artist"
+           },
+           {
+             name:"song-18",
+             title:"Unknown",
+             artist:"Artist"
+           },
+           {
+             name:"song-19",
+             title:"Unknown",
+             artist:"Artist"
+           },
+           {
+             name:"song-20",
+             title:"Unknown",
+             artist:"Artist"
+           },
+           {
+             name:"song-21",
+             title:"Unknown",
+             artist:"Artist"
+           },
+           {
+             name:"song-2",
+             title:"Unknown",
+             artist:"Artist"
+           },
+           {
+             name:"song-23",
+             title:"Unknown",
+             artist:"Artist"
+           },
+           {
+             name:"song-24",
+             title:"Unknown",
+             artist:"Artist"
+           }
+         ]
+
+         let isPlaying = false;
+         
+         const playMusic =()=>{
+         isPlaying = true
+         music.play();
+         play.classList.replace("fa-circle-play", "fa-circle-pause");
+         img.classList.add("animation");
+         }
+         const pauseMusic =()=>{
+         isPlaying = false
+         music.pause();
+         play.classList.replace("fa-circle-pause", "fa-circle-play");
+         img.classList.remove("animation");
+         }
+         play.addEventListener('click',()=>{
+         isPlaying?pauseMusic():playMusic();
+         })
+         
+         const loadSong = (songs)=>{
+         title.textContent = songs.title
+         artist.textContent = songs.artist
+         music.src = `files/${songs.name}.mp3`;
+         img.src = `images/${songs.name}.jpg`;
+         document.getElementById('current-song').textContent = `Song ${songIndex+1} of ${songs.length}`;
+         }
+         let songIndex = 0;
+         loadSong(songs[songIndex]);
+         const nextSong=()=>{
+         songIndex = (songIndex+1) % songs.length;
+         loadSong(songs[songIndex]);
+         playMusic();
+         }
+         const prevSong=()=>{
+         if (songIndex === 0) {
+            songIndex = songs.length - 1;
+         } else {
+            songIndex = (songIndex - 1) % songs.length;
+         }
+         loadSong(songs[songIndex]);
+         playMusic();
+         }
+         prev.addEventListener('click',prevSong)
+         next.addEventListener('click',nextSong)
+         progress.onchange = ()=>{
+         music.play();
+         }
+
+
+         music.addEventListener('loadedmetadata', function() {
+            // Set the max value of the range bar to the music duration
+            progress.max = music.duration;
+         });
+
+         // Update the range bar value as the music plays
+         music.addEventListener('timeupdate', function() {
+            progress.value = music.currentTime;
+         });
+
+         // Seek to the selected position when the range bar is moved
+         progress.addEventListener('input', function() {
+            music.currentTime = progress.value;
+             play.classList.replace("fa-circle-play", "fa-circle-pause");
+
+         });     
+         music.addEventListener("ended",nextSong);
+      </script> 
+   </body>
+</html>
