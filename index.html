@@ -5,7 +5,7 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Gana.com</title>
-      <link rel="icon" type="image/x-icon" href="/images/song-1.jpg">
+      <link rel="icon" type="image/x-icon" href="/thumbnail/song-1.jpg">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
       <style>
          *{
@@ -96,6 +96,12 @@
          aspect-ratio:16 / 9;
          }
          }
+         span#currentSong {
+    font-size: 20px;
+    color: grey;
+    text-align: center;
+    display: block;
+}
       </style>
    </head>
    <body>
@@ -109,7 +115,7 @@
          </div>
          <audio id="music" src="/source/song-1.mp3"></audio>
          <div>
-          <div><span id="current-song"></span></div>
+          <div><span id="currentSong"></span></div>
          <div class="progress-container">
             <input type="range" name="progress" id="progress" value="0" min="0" max="100">
          </div>
@@ -130,9 +136,8 @@
          const artist = document.querySelector("#artist");
          const progress = document.querySelector("#progress");
          const currentSong = document.querySelector("#currentSong");
-         const totalSong = document.querySelector("#totalSong");
          const songs=[
-         {
+           {  
              name:"song-1",
              title:"Ye Raate Ye Mosam",
              artist:"Artist"
@@ -253,7 +258,7 @@
              artist:"Artist"
            }
          ]
-
+         var totalCount = songs.length;
          let isPlaying = false;
          
          const playMusic =()=>{
@@ -277,7 +282,7 @@
          artist.textContent = songs.artist
          music.src = `source/${songs.name}.mp3`;
          img.src = `thumbnail/${songs.name}.jpg`;
-         document.getElementById('current-song').textContent = `Song ${songIndex+1} of ${song.length}`;
+         currentSong.textContent = songIndex+1 + " of "+ totalCount;
          }
          let songIndex = 0;
          loadSong(songs[songIndex]);
