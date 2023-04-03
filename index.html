@@ -105,9 +105,9 @@
             <h6 class="artist" id="artist"></h6>
          </div>
          <div class="thumbnail">
-            <img src="/images/song-1.jpg">
+            <img src="/thumbnail/song-1.jpg">
          </div>
-         <audio id="music" src="/files/song-1.mp3"></audio>
+         <audio id="music" src="/source/song-1.mp3"></audio>
          <div>
           <div><span id="current-song"></span></div>
          <div class="progress-container">
@@ -238,7 +238,7 @@
              artist:"Artist"
            },
            {
-             name:"song-2",
+             name:"song-22",
              title:"Unknown",
              artist:"Artist"
            },
@@ -275,8 +275,8 @@
          const loadSong = (songs)=>{
          title.textContent = songs.title
          artist.textContent = songs.artist
-         music.src = `files/${songs.name}.mp3`;
-         img.src = `images/${songs.name}.jpg`;
+         music.src = `source/${songs.name}.mp3`;
+         img.src = `thumbnail/${songs.name}.jpg`;
          document.getElementById('current-song').textContent = `Song ${songIndex+1} of ${songs.length}`;
          }
          let songIndex = 0;
